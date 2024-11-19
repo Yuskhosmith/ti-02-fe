@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Recipes from './pages/recipes';
+import Recipe from './pages/recipe';
+import PageLayout from './components/page-layout';
+import RecipeFrom from './pages/create-recipe';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Routes>
+            <Route path="/" element={<PageLayout />}>
+                <Route index element={<Recipes />} />
+                <Route path="/:id" element={<Recipe />} />
+                <Route path="/add-recipe" element={<RecipeFrom />} />
+                <Route path="/edit-recipe/:id" element={<RecipeFrom />} />
+            </Route>
+        </Routes>
+    );
 }
 
 export default App;
